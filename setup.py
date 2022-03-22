@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pypostgrestool",
+    name="dubborequests",
     version="0.1",
     author="fang",
     author_email="664616581@qq.com",
@@ -19,7 +19,7 @@ setuptools.setup(
     url="https://github.com/JokerChat/dubbo_requests",
     packages=setuptools.find_packages(),
     python_requires='>=3.7.0',
-    install_requires=['kazoo', 'json', 'urllib'],
+    install_requires=['kazoo'],
     license='MIT',
     classifiers=[
         "Programming Language :: Python :: 3",

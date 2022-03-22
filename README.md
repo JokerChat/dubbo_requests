@@ -14,6 +14,8 @@ pip install --upgrade dubborequests
 ```python
 # 导入
 import dubborequests
+from dubborequests.config import Config
+Config.zookeeper_url_list = ['192.168.240.15:2181', '192.168.240.15:2182', '192.168.240.15:2183']
 # 获取dubbo服务详情
 data = dubborequests.search('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
 ```
@@ -23,6 +25,8 @@ data = dubborequests.search('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
 ```python
 # 导入
 import dubborequests
+from dubborequests.config import Config
+Config.zookeeper_url_list = ['192.168.240.15:2181', '192.168.240.15:2182', '192.168.240.15:2183']
 # 获取dubbo服务下的所有方法
 data = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
 # 获取dubbo服务指定的方法
