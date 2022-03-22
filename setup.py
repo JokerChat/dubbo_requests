@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dubborequests",
-    version="0.1",
+    version="0.2",
     author="fang",
     author_email="664616581@qq.com",
     description="Telnet command test dubbo",
