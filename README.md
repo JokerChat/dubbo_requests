@@ -111,3 +111,5 @@ invoke_data = {
 res_data = dubborequests.telnet_invoke(*invoke_data)
 # 入参例子参考上面👆🏻
 ```
+### 四、基于dubbo接口测试库转换成 http 便捷请求
+项目地址：https://github.com/JokerChat/dubbo_fastapi
