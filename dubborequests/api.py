@@ -77,3 +77,16 @@ def telnet_invoke(ip, port, service_name, method_name, data):
     dubbo_conn = DubboUtil(ip, port)
     invoke_data = dubbo_conn.invoke(service_name, method_name, data)
     return invoke_data
+
+def telnet_list(ip, port, service_name, method_name=None):
+    """
+    手动telnet获取服务下的所有方法
+    :param ip:ip
+    :param port: 端口
+    :param service_name: 服务名
+    :param method_name: 方法名
+    :return:
+    """
+    dubbo_conn = DubboUtil(ip, port)
+    list_data = dubbo_conn.ls_command(service_name, method_name)
+    return [dict(method=k, param_type=v) for k, v in list_data.items()]

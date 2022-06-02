@@ -32,7 +32,7 @@ def param_type_mapping(param_type, value):
         if isinstance(value, int):
             return str(value)
         else:
-            # 这里兼容入参类型是java.lang.String, 但是这个String是由json转换而
+            # 这里兼容入参类型是java.lang.String, 但是这个String是由json转换而成，json必须转义
             return f"'{value}'"
     elif param_type in list_type and isinstance(value, list):
         return json.dumps(value, ensure_ascii=False)

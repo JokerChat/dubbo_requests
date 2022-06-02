@@ -31,6 +31,10 @@ Config.zookeeper_url_list = ['192.168.240.15:2181', '192.168.240.15:2182', '192.
 service_data = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
 # 获取dubbo服务指定的方法
 method_data = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService', 'login')
+# 通过ip+端口获取dubbo服务下的所有方法（此方法无需配置zookeeper地址）
+service_data1 = dubborequests.telnet_list('192.168.242.72', '30912', 'cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
+# 通过ip+端口获取dubbo服务指定的方法（此方法无需配置zookeeper地址）
+method_data2 = dubborequests.telnet_list('192.168.242.72', '30912', 'cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService', 'login')
 ```
 
 #### 通过zookeeper获取服务的ip和端口, Telnet命令测试dubbo接口
