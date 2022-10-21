@@ -29,6 +29,8 @@ from dubborequests.config import Config
 Config.zookeeper_url_list = ['192.168.240.15:2181', '192.168.240.15:2182', '192.168.240.15:2183']
 # 获取dubbo服务下的所有方法
 service_data = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
+# 获取指定版本dubbo服务下的所有方法
+service_data_by_version = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService', version='2.0.0')
 # 获取dubbo服务指定的方法
 method_data = dubborequests.list('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService', 'login')
 # 通过ip+端口获取dubbo服务下的所有方法（此方法无需配置zookeeper地址）
@@ -52,6 +54,9 @@ data = {
     }
 # 通过zookeeper获取服务的ip和端口, Telnet命令测试dubbo接口
 res_data = dubborequests.zk_invoke(service_name, method_name, data)
+# 如果想要指定版本的服务名，带上version即可
+version = '2.0.0'
+res_data_by_version = dubborequests.zk_invoke(service_name, method_name, data, version)
 # 如果入参类型是java.lang.String
 invoke_data1 = {
         "account": "xxxx"
@@ -116,7 +121,7 @@ invoke_data = {
     }
 }
  # Telnet命令测试dubbo接口
-res_data = dubborequests.telnet_invoke(*invoke_data)
+res_data = dubborequests.telnet_invoke(**invoke_data)
 # 入参例子参考上面👆🏻
 ```
 ### 四、基于dubbo接口测试库转换成 http 便捷请求
