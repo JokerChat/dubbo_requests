@@ -97,3 +97,13 @@ def telnet_list(ip, port, service_name, method_name=None):
     dubbo_conn = DubboUtil(ip, port)
     list_data = dubbo_conn.ls_command(service_name, method_name)
     return [dict(method=k, param_type=v) for k, v in list_data.items()]
+
+def get_service_like(service: str):
+    """
+    模糊获取服务名
+    :param service:
+    :return:
+    """
+    zk_conn = ZookeeperUtil()
+    data = zk_conn.get_service_like(service)
+    return data

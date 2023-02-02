@@ -218,3 +218,14 @@ class ZookeeperUtil(object):
             dubbo_service_data.append(service_data)
         self.zk.stop()
         return dubbo_service_data
+
+
+    def get_service_like(self, service: str) -> list:
+        """
+        模糊查询服务名
+        :param service: 服务名
+        :return:
+        """
+        all_node = self.zk.get_children('/dubbo')
+        node = [i for i in all_node if service.lower() in i.lower().split('.')[-1]]
+        return node

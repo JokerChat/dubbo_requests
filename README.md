@@ -18,6 +18,8 @@ from dubborequests.config import Config
 Config.zookeeper_url_list = ['192.168.240.15:2181', '192.168.240.15:2182', '192.168.240.15:2183']
 # 获取dubbo服务详情
 data = dubborequests.search('cn.com.xxx.sso.ehr.api.dubbo.SsoEmpInfoService')
+# 模糊查询dubbo服务
+search_data = dubborequests.get_service_like('SsoEmpInfoService')
 ```
 
 #### 获取服务下的所有方法
