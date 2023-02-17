@@ -82,7 +82,8 @@ def telnet_invoke(ip, port, service_name, method_name, data):
     :return:
     """
     dubbo_conn = DubboUtil(ip, port)
-    invoke_data = dubbo_conn.invoke(service_name, method_name, data)
+    param_type_list = dubbo_conn.ls_command(service_name, method_name)[method_name]
+    invoke_data = dubbo_conn.invoke(service_name, method_name, data, param_type_list)
     return invoke_data
 
 def telnet_list(ip, port, service_name, method_name=None):
