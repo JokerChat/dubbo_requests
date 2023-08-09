@@ -66,10 +66,10 @@ def zk_invoke(service_name, method_name, data, version = None):
     :param version: 版本号
     :return:
     """
-    dubbo_conn, dubbo_data = __get_conn_dto(service_name, version)
-    param_type_list = dubbo_conn.ls_command(dubbo_data['interface'], method_name)[method_name]
+    dubbo_conn, service_data = __get_conn_dto(service_name, version)
+    param_type_list = dubbo_conn.ls_command(service_data['interface'], method_name)[method_name]
     invoke_data = dubbo_conn.invoke(service_name, method_name, data, param_type_list)
-    return dict(invoke_data=invoke_data, param_type_list=param_type_list)
+    return dict(invoke_data=invoke_data, param_type_list=param_type_list, service_data = service_data)
 
 def telnet_invoke(ip, port, service_name, method_name, data):
     """
