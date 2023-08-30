@@ -101,6 +101,12 @@ invoke_data8 = {
         "name": "clearlove7"
     }
 }
+# 如果入参类型是枚举
+# 'ENUM' in param_type.upper() 主要判断逻辑是这个 
+# 如需调整，可根据实际情况来
+invoke_data9 = {
+        "name": "blue"
+    }
 # 注意：
 #1、len(data)必须等于方法入参个数
 #2、data里面的key可以随意命名，data必须为dict类型

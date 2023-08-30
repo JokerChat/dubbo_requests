@@ -44,6 +44,12 @@ def param_type_mapping(param_type, value):
         return json.dumps(value, ensure_ascii=False)
     elif param_type not in [*enum_type, *list_type, *map_type] and isinstance(value, list):
         return json.dumps(value, ensure_ascii=False)
+    # elif 'ENUM' in param_type.upper() or (isinstance(value, dict) and 'name' in value.keys()):
+    #     enum_dict = {'name': value.get('name'), 'class': param_type}
+    #     return json.dumps(enum_dict, ensure_ascii=False)
+    elif 'ENUM' in param_type.upper():
+        enum_dict = {'name': value, 'class': param_type}
+        return json.dumps(enum_dict, ensure_ascii=False)
     elif param_type == '':
         return value
     else:
@@ -148,18 +154,19 @@ class DubboUtil(object):
                 error_msg = '、'.join(error_type_list)
                 error_msg += '！请检查！'
                 raise Exception(error_msg)
-        else:
-            for k,v in param_dict.items():
-                if isinstance(v, int):
-                    invoke_param_List.append(str(v))
-                elif isinstance(v, str):
-                    invoke_param_List.append(f"'{v}'")
-                elif isinstance(v, dict):
-                    invoke_param_List.append(json.dumps(v, ensure_ascii=False))
-                elif isinstance(v, list):
-                    invoke_param_List.append(json.dumps(v, ensure_ascii=False))
-                else:
-                    invoke_param_List.append(str(v))
+        # invoke 方法都会入参param_type_list，没这段逻辑了
+        # else:
+        #     for k,v in param_dict.items():
+        #         if isinstance(v, int):
+        #             invoke_param_List.append(str(v))
+        #         elif isinstance(v, str):
+        #             invoke_param_List.append(f"'{v}'")
+        #         elif isinstance(v, dict):
+        #             invoke_param_List.append(json.dumps(v, ensure_ascii=False))
+        #         elif isinstance(v, list):
+        #             invoke_param_List.append(json.dumps(v, ensure_ascii=False))
+        #         else:
+        #             invoke_param_List.append(str(v))
         boby = ','.join(invoke_param_List)
         response_data = self.invoke_command(service, method, boby)
         try:
