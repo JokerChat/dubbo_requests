@@ -8,21 +8,20 @@ jobs:
   build-wheels:
     runs-on: ubuntu-latest
     name: Build wheels
-    strategy:
-      matrix:
-        python-version: ['3.7', '3.8', '3.9']
     steps:
       - uses: actions/checkout@v3
       - name: 设置python环境
         uses: actions/setup-python@v3
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: 3.9
       - name: 安装setuptools
         run: pip install setuptools
-      - name: 安装wheel
+      - name: 安装wheels
         run: pip install wheel
       - name: 安装twine
         run: pip install twine
+      - name: 构建wheels
+        run: python setup.py sdist bdist_wheel
       - name: 上传PyPI
         env:
           TWINE_USERNAME: __token__

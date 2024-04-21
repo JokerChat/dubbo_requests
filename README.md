@@ -1,4 +1,4 @@
-### 一、安装（python版本建议3.7以上）
+### 一、安装（python版本建议3.9以上）
 
 ```bash
 pip install dubborequests

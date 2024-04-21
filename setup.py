@@ -10,7 +10,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="dubborequests",
-    version="0.9.3",
+    version="0.9.4",
     author="fang",
     author_email="664616581@qq.com",
     description="Telnet command test dubbo",
@@ -18,7 +18,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/JokerChat/dubbo_requests",
     packages=setuptools.find_packages(),
-    python_requires='>=3.7.0',
+    python_requires='>=3.9.0',
     install_requires=['kazoo'],
     license='MIT',
     classifiers=[
