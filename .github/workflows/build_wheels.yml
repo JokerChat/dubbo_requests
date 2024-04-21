@@ -1,0 +1,30 @@
+name: Build And Publish Python Wheels
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-wheels:
+    runs-on: ubuntu-latest
+    name: Build wheels
+    strategy:
+      matrix:
+        python-version: ['3.7', '3.8', '3.9']
+    steps:
+      - uses: actions/checkout@v3
+      - name: 设置python环境
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: 安装setuptools
+        run: pip install setuptools
+      - name: 安装wheel
+        run: pip install wheel
+      - name: 安装twine
+        run: pip install twine
+      - name: 上传PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: twine upload --skip-existing --repository-url https://upload.pypi.org/legacy/ dist/*
